@@ -2,22 +2,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Navbar } from '../components/ui/Navbar';
 import { LoginScreen } from '../components/login/LoginScreen';
-import { MarvelScreen } from '../components/marvel/MarvelScreen';
+import { DashboardRoutes } from './DashboardRoutes';
 
 export const AppRouter = () => {
   return (
     <Router>
+      {/* Si se quisiera un estilo global para toda la aplicación se puede colocar 
+      dentro del div */}
       <div>
-        <Navbar />
-
         <Switch>
-          {/* En el login habrá un diseño (template) diferente, sin el navbar, 
-          a cuando el usuario se autentica. Por ahora la autenticación es ficticia */}
           <Route exact path="/login" component={LoginScreen} />
 
-          <Route exact path="/" component={MarvelScreen} />
+          {/* Se elimina el exact ya que redireccionamos a /marvel, por lo que nunca
+          va a valer exactamente el valor / */}
+          <Route path="/" component={DashboardRoutes} />
         </Switch>
       </div>
     </Router>
