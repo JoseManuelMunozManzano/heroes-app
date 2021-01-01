@@ -8,3 +8,5 @@ Para ejecutar:
   npm install
   npm start
 ```
+
+La idea es que en cada branch se vaya mostrando la evolución del proyecto.
