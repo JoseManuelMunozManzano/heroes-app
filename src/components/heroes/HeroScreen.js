@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 import { getHeroById } from '../../selectors/getHeroById';
@@ -15,7 +15,9 @@ export const HeroScreen = ({ history }) => {
   // Si hay más de un segmento se reciben como un objeto
   const { heroeId } = useParams();
 
-  const hero = getHeroById(heroeId);
+  // pequeña optimización usando useMemo
+  //const hero = getHeroById(heroeId);
+  const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
 
   // El heroe puede no existir si se toca la url
   // Ejemplo: http://localhost:3000/hero/marvel-spiderdfdfsdfsdfsd
