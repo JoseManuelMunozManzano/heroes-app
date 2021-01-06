@@ -1,9 +1,10 @@
 // El nombre AppRouter es una convención para indicar que es el sistema de routers principal
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import { AuthContext } from '../auth/AuthContext';
 import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 import { LoginScreen } from '../components/login/LoginScreen';
 import { DashboardRoutes } from './DashboardRoutes';
@@ -18,7 +19,13 @@ export const AppRouter = () => {
       dentro del div */}
       <div>
         <Switch>
-          <Route exact path="/login" component={LoginScreen} />
+          {/* Se deja pública esta ruta */}
+          <PublicRoute
+            exact
+            path="/login"
+            component={LoginScreen}
+            isAuthenticated={user.logged}
+          />
 
           {/* Se elimina el exact ya que redireccionamos a /marvel, por lo que nunca
           va a valer exactamente el valor / */}
