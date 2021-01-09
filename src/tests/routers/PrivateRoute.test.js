@@ -43,7 +43,7 @@ describe('Pruebas en <PrivateRoute />', () => {
 
     // Si no se envuelve <PrivateRoute /> en el <MemoryRouter />
     // aqui da el error: Invariant failed: You should not use <Route> outside a <Router>
-    console.log('==========' + wrapper.html() + '==========');
+    // console.log('==========' + wrapper.html() + '==========');
 
     // Esto falla porque:
     // Si hay un higher order component en la prueba no se puede usar shallow, porque shallow sólo va a renderizar el
