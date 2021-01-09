@@ -10,6 +10,13 @@ describe('Pruebas en <PrivateRoute />', () => {
     },
   };
 
+  // No es nuestra tarea probar que físicamente se grabe en localstorage.
+  // Sobreescribimos la funcionalidad del setItem del localStorage. En lugar de ser la función que físicamente
+  // lo graba, ahora es una función JEST.
+  // Como el setItem es algo propio del navegador web, bastaría con que nos aseguremos que sea llamado con los
+  // argumentos necesarios para que sea guardado.
+  Storage.prototype.setItem = jest.fn();
+
   test('debe de mostrar el componente si está autenticado y guardar localStorage', () => {
     // isAuthenticated lo paso como true, me lo invento.
     // Pero si ejecuto la prueba y luego lo paso a false falla la prueba, porque ya no estaríá autenticado
@@ -45,5 +52,7 @@ describe('Pruebas en <PrivateRoute />', () => {
     // Por eso arriba se cambia el shallow() por mount()
     // Usando mount() el wrapper si tiene internamente toda la estructura que estamos esperando.
     expect(wrapper.find('span').exists()).toBe(true);
+
+    expect(localStorage.setItem).toHaveBeenCalledWith('lastPath', '/marvel');
   });
 });
