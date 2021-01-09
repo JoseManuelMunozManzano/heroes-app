@@ -19,6 +19,10 @@ export const HeroScreen = ({ history }) => {
   //const hero = getHeroById(heroeId);
   const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
 
+  // Para las pruebas. Ver test/components/heroes/HeroScreen.test.js
+  // Se comprueba si vale undefined (falta añadir el Route) o tiene valor
+  // console.log('Hero: ', hero, 'HeroId:', heroeId);
+
   // El heroe puede no existir si se toca la url
   // Ejemplo: http://localhost:3000/hero/marvel-spiderdfdfsdfsdfsd
   // Una buena práctica es redireccionar a la página principal (/marvel en este caso)
