@@ -2,6 +2,14 @@ import React, { useMemo } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 import { getHeroById } from '../../selectors/getHeroById';
+import { heroImages } from '../../helpers/heroImages';
+
+// Formas de trabajar con imagenes
+// 1-Importación física del elemento que deseamos. Funciona bien para contenido estático
+// import batman from '../../assets/heroes/dc-batman.jpg';
+// 2-Importación dinámica con imágenes dentro del directorio src.
+//   Con true indicamos que se busca en subdirectorios
+// const heroImages = require.context('../../assets/heroes', true);
 
 export const HeroScreen = ({ history }) => {
   // Extraer los argumentos del url
@@ -53,7 +61,12 @@ export const HeroScreen = ({ history }) => {
     <div className="row mt-5">
       <div className="col-4">
         <img
-          src={`../assets/heroes/${heroeId}.jpg`}
+          // Desde public/assets
+          // src={`../assets/heroes/${heroeId}.jpg`}
+          // Con 1.Importación física
+          //src={batman}
+          // Con 2.Importación dinámica
+          src={heroImages(`./${heroeId}.jpg`).default}
           alt={superhero}
           className="img-thumbnail animate__animated animate__fadeInLeft"
         />
